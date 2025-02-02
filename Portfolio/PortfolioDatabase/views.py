@@ -1,28 +1,39 @@
 from django.shortcuts import render
 from django.shortcuts import HttpResponse
 from .models import Hobby, Project
+from django.template import loader
 
 # Create your views here.
-def home(request):
-    return HttpResponse("Hi I'm Kaden, welcome to my portfolio! I like to program and play basketball. Recently I've gotten into snowboarding.")
+def index(request):
+    return render(request, 'PortfolioDatabase/index.html')
 
 def hobbies(request):
     hobby_list = Hobby.objects.all().values()
-    output = ""
-    for i in hobby_list:
-        output = output + i['name'] + ": "
-        output = output + i['desc'] + "<br>"
-        output = output + "<br>"
-    return HttpResponse(output)
+    context = {
+        'hobby_list': hobby_list,
+    }
+    return render(request, 'PortfolioDatabase/hobbies.html', context)
 
 def portfolio(request):
     project_list = Project.objects.all().values()
-    output = ""
-    for i in project_list:
-        output = output + i['name'] + ": "
-        output = output + i['desc'] + "<br>"
-        output = output + "<br>"
-    return HttpResponse(output)
+    context = {
+        'project_list': project_list,
+    }
+    return render(request, 'PortfolioDatabase/portfolio.html', context)
 
 def contact(request):
-    return HttpResponse("kadenbuchanan@mail.weber.edu")
+    return render(request, 'PortfolioDatabase/contact.html')
+
+def hobby_detail(request, hobby_id):
+    hobby = Hobby.objects.get(pk=hobby_id)
+    context = {
+        'hobby': hobby,
+    }
+    return render(request, 'PortfolioDatabase/hobby_details.html', context)
+
+def project_detail(request, project_id):
+    project = Project.objects.get(pk=project_id)
+    context = {
+        'project': project,
+    }
+    return render(request, 'PortfolioDatabase/project_details.html', context)

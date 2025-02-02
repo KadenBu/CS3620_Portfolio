@@ -1,0 +1,15 @@
+{%extends 'PortfolioDatabase/base.html' %}
+
+{% block body %}
+
+<h1 class="py-5 text-center container">{{hobby.name}}</h1>
+
+<div class="col-md-6 offset-md-3">
+    <img class="image-fluid mx-auto d-block" src="{{ hobby.image }}" />
+  
+    <h4 class="text-center">
+        {{hobby.desc}}
+    </h4>
+</div>
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{%extends 'PortfolioDatabase/base.html' %}
+
+{% block body %}
+
+<h1 class="py-5 text-center container">Hobbies</h1>
+
+{% for hobby in hobby_list %}
+    <div class="row">
+        <div class="col-md-3 offset-md-3">
+            <img class="card" height="250px" width="500px" src="{{ hobby.image }}" />
+        </div>
+        <div class="col-md-4">
+            <h3>{{hobby.name}}</h3>
+            <a href="{% url 'PortfolioDatabase:HobbyDetails' hobby.id %}" class="btn btn-success">View</a>
+        </div>
+    </div>
+{% endfor %}
+
+{% endblock %}

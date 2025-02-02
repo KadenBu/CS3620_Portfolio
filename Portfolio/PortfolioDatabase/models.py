@@ -5,6 +5,7 @@ from django.db import models
 class Hobby(models.Model):
     name = models.CharField(max_length = 200)
     desc = models.TextField()
+    image = models.CharField(max_length = 500, default = "https://www.contentviewspro.com/wp-content/uploads/2017/07/default_image.png")
 
     def __str__(self):
         return self.name
@@ -12,6 +13,7 @@ class Hobby(models.Model):
 class Project(models.Model):
     name = models.CharField(max_length = 200)
     desc = models.TextField()
+    image = models.CharField(max_length = 500, default = "https://www.contentviewspro.com/wp-content/uploads/2017/07/default_image.png")
 
     def __str__(self):
         return self.name
